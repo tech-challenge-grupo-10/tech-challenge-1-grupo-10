@@ -2,10 +2,10 @@
 
 Time
 
-Felipe
-Hipólito
-Ítalo
-Leonardo
+- Felipe
+- Hipólito
+- Ítalo
+- Leonardo
 
 ## Getting started
 
