@@ -1,6 +1,11 @@
 # Tech Challenge Grupo 10
 
+Time
 
+Felipe
+Hipólito
+Ítalo
+Leonardo
 
 ## Getting started
 
