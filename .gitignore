@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Image files
+data/computer-vision/jpeg
