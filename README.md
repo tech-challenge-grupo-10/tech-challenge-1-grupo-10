@@ -1,9 +1,12 @@
 # Tech Challenge Grupo 10
 
-Time
+Este repositório contém o caderno análise para o Tech Challenge da Fase 1 da pós IA para Devs da FIAP do ano de 2025
 
-- Felipe
-- Hipólito
+## O Grupo 10
+O grupo 10 consiste dos seguintes alunos da pós:
+
+- Felipe 
+- Hipólito Douglas França Moreira - 
 - Ítalo
 - Leonardo
 
