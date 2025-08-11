@@ -17,3 +17,40 @@ O grupo 10 consiste dos seguintes alunos da pós:
 3. Treinamento com os algoritmos de ML
 4. Comparação
 5. Explicar os resultados
+
+## Instalação
+
+Para rodar este projeto, é necessário instalar a ferramenta `uv` para organização das dependencias e dar mais velocidade na instalação de pacotes, clonar o repositório e instalar as dependências.
+
+### Instalação UV
+
+O guia de instalação completo está disponível em:
+
+https://docs.astral.sh/uv/getting-started/installation
+
+Nesse documento será adotado a instalação de linux por conta do Dockerfile, que pode ser executado também localmente.
+
+Use `curl` para baixar original script e executar com sh:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Caso não tenha `curl`, tem a alternatia de usar o `wget`:
+
+```bash
+wget -qO- https://astral.sh/uv/install.sh | sh
+```
+
+### Clonar repositório e instalar as dependências
+
+Clonar o repositório:
+
+```bash
+git clone https://github.com/tech-challenge-grupo-10/tech-challenge-1-grupo-10
+
+cd tech-challenge-1-grupo-10
+
+uv sync
+```
+
+## Execução
