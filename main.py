@@ -1,4 +1,7 @@
 import polars as pl
+import argparse
+import sys
+import numpy as np
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -27,11 +30,41 @@ def train_model(X_train, y_train):
 
     return rlog_model
 
-def main():
+def main(command_line_data):
     eval_data, model = prepare_model_with_dataset()
-    y_pred_rlog = model.predict(eval_data)
+    y_pred_rlog = model.predict(command_line_data if command_line_data is not None else eval_data)
     print(y_pred_rlog)
-    
 
 if __name__ == "__main__":
-    main()
+    if(len(sys.argv) > 1):
+        parser = argparse.ArgumentParser(
+            description="Script that executes the a Logistic Regression based on parameters command line"
+        )
+        parser.add_argument("--radius_mean", required=True, type=float)
+        parser.add_argument("--texture_mean", required=True, type=float)
+        parser.add_argument("--perimeter_mean", required=True, type=float)
+        parser.add_argument("--area_mean", required=True, type=float)
+        parser.add_argument("--smoothness_mean", required=True, type=float)
+        parser.add_argument("--compactness_mean", required=True, type=float)
+        parser.add_argument("--concavity_mean", required=True, type=float)
+        parser.add_argument("--concave_points_mean", required=True, type=float)
+        parser.add_argument("--symmetry_mean", required=True, type=float)
+        parser.add_argument("--fractal_dimension_mean", required=True, type=float)
+        
+        args = parser.parse_args()
+
+        radius_mean = args.radius_mean
+        texture_mean = args.texture_mean
+        perimeter_mean = args.perimeter_mean
+        area_mean = args.area_mean
+        smoothness_mean = args.smoothness_mean
+        compactness_mean = args.compactness_mean
+        concavity_mean = args.concavity_mean
+        concave_points_mean = args.concave_points_mean
+        symmetry_mean = args.symmetry_mean
+        fractal_dimension_mean = args.fractal_dimension_mean
+
+        main(np.array([radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean,concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean]).reshape(1, -1))
+
+    else:
+        main(None)

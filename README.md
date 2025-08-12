@@ -53,4 +53,60 @@ cd tech-challenge-1-grupo-10
 uv sync
 ```
 
+## Jupyter Notebook
+
+A execução do jupyter notebook para as análises foi feita com a IDE VSCode e o plugin da Microsoft para o Jupyter Notebook
+
+Microsoft Visual Studio Code:
+
+https://code.visualstudio.com
+
+Plugin Jupyter da Microsoft: 
+
+https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
+
+Após instalar as dependências, você pode executar o notebook que está dentro da pasta notebooks
+
+```
+notebooks/analysis.ipynb
+```
+
 ## Execução
+
+Para executar o modelo instalado localmente com a massa de avaliação:
+
+```bash
+uv run main.py
+```
+
+Para executar usando uma massa de avaliação com os parâmetros específicos vindos da linha de comando:
+
+```bash
+uv run main.py \
+--radius_mean=17.99 \
+--texture_mean=10.38 \
+--perimeter_mean=122.8 \
+--area_mean=1001 \
+--smoothness_mean=0.1184 \
+--compactness_mean=0.2776 \
+--concavity_mean=0.3001 \
+--concave_points_mean=0.1471 \
+--symmetry_mean=0.2419 \
+--fractal_dimension_mean=0.07871
+```
+
+## Docker
+
+Para rodar o modelo no script em `main.py` executar o build da imagem docker:
+
+```bash
+docker build -t tech_challenge_fase_1 . 
+```
+
+Rodar a aplicação no container:
+
+```bash
+docker run -it --rm --name tech_challenge_fase_1 tech_challenge_fase_1
+```
+
+
