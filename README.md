@@ -103,10 +103,23 @@ Para rodar o modelo no script em `main.py` executar o build da imagem docker:
 docker build -t tech_challenge_fase_1 . 
 ```
 
-Rodar a aplicação no container:
+Rodar a aplicação no container, com a massa de avaliação:
 
 ```bash
-docker run -it --rm --name tech_challenge_fase_1 tech_challenge_fase_1
+docker run -it --rm tech_challenge_fase_1 uv run main.py
 ```
+Rodar a aplicação no container, com dados preenchidos pela linha de comando:
 
-
+```bash
+docker run -it --rm tech_challenge_fase_1 uv run main.py \
+--radius_mean=17.99 \
+--texture_mean=10.38 \
+--perimeter_mean=122.8 \
+--area_mean=1001 \
+--smoothness_mean=0.1184 \
+--compactness_mean=0.2776 \
+--concavity_mean=0.3001 \
+--concave_points_mean=0.1471 \
+--symmetry_mean=0.2419 \
+--fractal_dimension_mean=0.07871
+```
