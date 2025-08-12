@@ -7,6 +7,16 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 
+def remove_outliers_iqr(df, column):
+    q1 = df[column].quantile(0.25)
+    q3 = df[column].quantile(0.75)
+    iqr = q3 - q1
+ 
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+ 
+    return df.filter((df[column] >= lower_bound) & (df[column] <= upper_bound))
+
 def prepare_model_with_dataset():
     # Load the dataset
     df = pl.read_csv("./data/data.csv")
@@ -18,8 +28,13 @@ def prepare_model_with_dataset():
     adequated_diagnosis = pl.Series("diagnosis_int",labelEncoder.fit_transform(df.select('diagnosis')))
     df.insert_column(2, adequated_diagnosis)
 
-    y = df["id", "diagnosis", "diagnosis_int"]
-    X = df["radius_mean","texture_mean","perimeter_mean","area_mean","smoothness_mean","compactness_mean","concavity_mean","concave_points_mean","symmetry_mean","fractal_dimension_mean"]
+    df_out = df
+
+    for column in ["radius_mean","texture_mean","perimeter_mean","area_mean","smoothness_mean","compactness_mean","concavity_mean","concave_points_mean","symmetry_mean","fractal_dimension_mean"]:
+        df_out = remove_outliers_iqr(df_out, column)
+
+    y = df_out["id", "diagnosis", "diagnosis_int"]
+    X = df_out["radius_mean","texture_mean","perimeter_mean","area_mean","smoothness_mean","compactness_mean","concavity_mean","concave_points_mean","symmetry_mean","fractal_dimension_mean"]
     X_train, eval_data, y_train, _ = train_test_split(X, y.get_column("diagnosis_int"), test_size=0.2, random_state=42)
 
     return eval_data, train_model(X_train, y_train)
